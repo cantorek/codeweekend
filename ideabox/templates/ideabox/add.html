@@ -1,0 +1,55 @@
+{% include 'ideabox/header.html' %}
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 style="text-align: center;">Add new idea!</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+            <span style="color:red;">{{ idea_form.non_field_errors }}</span>
+            <form method="POST" action="{{ request.path }}" class="form-horizontal">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <span style="color:red;">{{ idea_form.title.errors }}</span>
+                    <label class="col-sm-3 control-label"> Title </label>
+                    <div class="col-sm-9">
+                        {{ idea_form.title }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <span style="color:red;">{{ idea_form.description.errors }}</span>
+                    <label class="col-sm-3 control-label"> Description </label>
+                    <div class="col-sm-9">
+                        {{ idea_form.description }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <span style="color:red;">{{ idea_form.difficulty.errors }}</span>
+                    <label class="col-sm-3 control-label"> Difficulty </label>
+                    <div class="col-sm-9">
+                        {{ idea_form.difficulty }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" />
+                </div>
+
+            </form>
+        </div>
+
+      </div>
+
+      <hr>
+
+{% include 'ideabox/footer.html' %}
