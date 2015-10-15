@@ -27,6 +27,7 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^ideabox/add', views.NewIdea, name='new_idea'),
+    url(r'^ideabox/(?P<id>\d+)/edit', views.EditIdea, name='edit_idea'),
     url(r'^api/', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),

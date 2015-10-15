@@ -2,3 +2,29 @@ body {
     font-family: "Lato", sans-serif
 }
 
+.jumbo {
+    padding: 2em 0 0 5em;
+    background: url('/static/images/code.jpg') no-repeat;
+    color: white;
+    text-shadow: 1px 1px #000000;
+}
+
+.jumbo h1 {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    margin: 0;
+    padding: 0px 0px 6px 0px;
+    font-size: 61px;
+    line-height: 44px;
+    letter-spacing: -2px;
+    font-weight: bold;
+}
+
+.idea {
+    background: url('/static/images/idea.jpg') no-repeat;
+}
+
+.author {
+    margin-top: -1em;
+    color: gray;
+    font-size: small;
+}

@@ -2,7 +2,7 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
+      <div class="container-fluid jumbo">
         <h1>Hello, world!</h1>
         <p>Need inspiration? <br />
         Don't have any plans for the weekend? <br />
@@ -18,8 +18,12 @@
         {% for idea in ideas %}
             <div class="col-md-4">
                 <h2>{{ idea.title }}</h2>
+                <p class="author"> by {{ idea.author }} </p>
                 <p>{{ idea.description }}</p>
                 <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                {% if request.user == idea.author %}
+                    <p><a class="btn btn-info" href="/ideabox/{{ idea.id }}/edit" role="button">Edit &raquo;</a></p>
+                {% endif %}
             </div>
         {% endfor %}
 

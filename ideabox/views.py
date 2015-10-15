@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
@@ -44,4 +44,21 @@ def NewIdea(request):
         idea_form = IdeaForm()
 
     context = RequestContext(request, {'idea_form' : idea_form, })
+    return render(request, 'ideabox/add.html', context)
+
+@login_required
+def EditIdea(request, id):
+    instance = Idea.objects.get(id=id)
+    if request.user != instance.author:
+        return redirect('/')
+
+    idea_form = IdeaForm(request.POST or None, instance = instance)
+
+    context = RequestContext(request, {'idea_form' : idea_form, })
+
+    if idea_form.is_valid():
+        idea = idea_form.save(commit=False)
+        idea.save()
+        context.push({'success_message' : 'Idea edited successfully' })
+
     return render(request, 'ideabox/add.html', context)
