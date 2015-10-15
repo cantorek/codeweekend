@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import Http404
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAdminUser
@@ -48,7 +49,11 @@ def NewIdea(request):
 
 @login_required
 def EditIdea(request, id):
-    instance = Idea.objects.get(id=id)
+    try:
+        instance = Idea.objects.get(id=id)
+    except:
+        raise Http404('Idea does not exists!')
+    
     if request.user != instance.author:
         return redirect('/')
 
