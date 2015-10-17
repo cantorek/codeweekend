@@ -20,7 +20,7 @@
                 <h2>{{ idea.title }}</h2>
                 <p class="author"> by {{ idea.author }} </p>
                 <p>{{ idea.description }}</p>
-                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-default" href="/ideabox/{{ idea.id }}/" role="button">View details &raquo;</a></p>
                 {% if request.user == idea.author %}
                     <p><a class="btn btn-info" href="/ideabox/{{ idea.id }}/edit" role="button">Edit &raquo;</a></p>
                 {% endif %}

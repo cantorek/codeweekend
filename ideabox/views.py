@@ -27,11 +27,19 @@ class IdeaViewSet(viewsets.ModelViewSet):
     queryset = Idea.objects.all().order_by('-date_added')
     serializer_class = IdeaSerializer
 
-
 def index(request):
     ideas = Idea.objects.all().order_by('-date_added')
     context = RequestContext(request, {'ideas' : ideas, })
     return render(request, 'ideabox/index.html', context)
+
+def ShowIdea(request, id):
+    try:
+        instance = Idea.objects.get(id=id)
+    except:
+        raise Http404('Idea does not exists!')
+
+    context = RequestContext(request, {'idea' : instance, })
+    return render(request, 'ideabox/idea.html', context)
 
 @login_required
 def NewIdea(request):

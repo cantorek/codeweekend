@@ -1,0 +1,30 @@
+{% include 'ideabox/header.html' %}
+
+    <div class="jumbotron">
+      <div class="container-fluid idea">
+        <h1 style="text-align: center;">Share your idea!</h1>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+            <h2>{{ idea.title }}</h2>
+            <p class="author"> by {{ idea.author }} on {{ idea.date_added }}</p>
+            <p>{{ idea.description }}</p>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-md-4 col-md-offset-4">
+            {% load account %}
+            komentarz {{ request.user }} {% user_display user %}
+        </div>
+        {% endif %}
+
+      </div>
+
+      <hr>
+
+{% include 'ideabox/footer.html' %}
